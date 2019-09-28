@@ -1,23 +1,25 @@
-import React, { useState } from "react";
+import React from "react";
 import ReactDOM from "react-dom";
-import { Router } from "@reach/router";
+import { Router, Link } from "@reach/router";
 import Details from "./Details";
 import SearchParams from "./SearchParams";
-import ThemeContext from "./ThemeContext";
-import NavBar from "./NavBar";
+import { Provider } from "react-redux";
+import store from "./store";
 
 const App = () => {
-  const theme = useState("darkblue");
+  //const theme = useState("darkblue");
   return (
-    <ThemeContext.Provider value={theme}>
+    <Provider store={store}>
       <div>
-        <NavBar />
+        <header>
+          <Link to="/">Adopt Me!</Link>
+        </header>
         <Router>
           <SearchParams path="/" />
           <Details path="/details/:id" />
         </Router>
       </div>
-    </ThemeContext.Provider>
+    </Provider>
   );
 };
 
